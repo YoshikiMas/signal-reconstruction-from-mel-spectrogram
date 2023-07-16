@@ -1,0 +1,231 @@
+
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Signal Reconstruction from Mel-spectrogram Based on Bi-level Consistency of Full-band Magnitude and Phase</title>
+      <link rel="stylesheet" type="text/css" href="stylesheet.css"/>
+      <script>
+         function play(path) {{
+           var player = document.getElementById('player');
+           player.src = path;
+           player.play();
+         }}
+      </script>
+      <style>
+         .audio-cell {
+         /* Center audio widgets in the table cell. */
+         text-align: center;
+         padding-bottom: 1px;
+         padding-top: 1px;
+         }
+         .audio-cell-padded {
+         text-align: center;
+         padding-bottom: 10px;
+         padding-top: 10px;
+         }
+         .audio-header {
+         /* Don't wrap header text. */
+         white-space: nowrap;
+         /* Some breaking space between headers for readability. */
+         padding-right: 5px;
+         padding-left: 5px;
+         }
+         .reference-cell {
+         /* For uniformity and to wrap long reference text, limit the reference cell's width. */
+         width: 25%;
+         padding-top: 20px;
+         padding-bottom: 20px;
+         }
+         .sample audio {
+         vertical-align: middle;
+         padding-left: 3px;
+         padding-right: 3px;
+         }
+         .round-button {
+         box-sizing: border-box;
+         display:block;
+         width:30px;
+         height:30px;
+         padding-top: 8px;
+         padding-left: 3px;
+         line-height: 6px;
+         border: 1.2px solid #000;
+         border-radius: 50%;
+         color: #000;
+         text-align:center;
+         background-color: rgba(0,0,0,0.00);
+         font-size:6px;
+         box-shadow: 0px 0px 2px rgba(0,0,0,1);
+         transition: all 0.2s ease;
+         }
+         .round-button:hover {
+         background-color: rgba(0,0,0,0.0);
+         box-shadow: 0px 0px 4px rgba(0,0,0,1);
+         }
+         .round-button:active {
+         background-color: rgba(0,0,0,0.01);
+         box-shadow: 0px 0px 1px rgba(0,0,0,1);
+         }
+      </style>
+   </head>
+   <body>
+     <div class="main">
+       <article>
+         <header>
+            <h1>Signal Reconstruction from Mel-spectrogram Based on Bi-level Consistency of Full-band Magnitude and Phase</h1>
+         </header>
+      </article>
+      <div>
+        <p>
+		  Author 1,
+        Author 2,
+	  	  Author 3,
+        Author 4
+		</p>
+      </div>
+      <p><b>Abstract: </b>We propose an optimization-based method for reconstructing a time-domain signal from a low-dimensional spectral representation such as a mel-spectrogram.
+         Phase reconstruction has been studied to reconstruct a time-domain signal from the full-band short-time Fourier transform (STFT) magnitude.
+         The Griffin-Lim algorithm (GLA) has been widely used because it relies only on the redundancy of STFT and is applicable to various audio signals.
+         In this paper, we jointly reconstruct the full-band magnitude and phase by considering the bi-level relationships among the time-domain signal, its STFT coefficients, and its mel-spectrogram.
+         The proposed method is formulated as a rigorous optimization problem and estimates the full-band magnitude based on the criterion used in GLA.
+         Our experiments demonstrate the effectiveness of the proposed method on speech, music, and environmental signals.
+      </p>
+
+
+
+<hr>
+<h2 id="intermediate">Evaluation on Speech Signals :</h2>
+<p>
+This section shows examples of the speech signals reconstructed from mel-spectraograms with 80 bins.
+Original speech signals are from a subset of the TIMIT dataset [1] and resampled at 16 kHz.
+For more details, please refer our paper.
+</p>
+
+<p>
+<table>
+   <tbody>
+      <tr>
+         <td align="center"> </td>
+         <td align="center"> Speech 1 </td>
+         <td align="center"> Speech 2 </td>
+         <td align="center"> Speech 3 </td>
+      </tr>
+      <tr>
+         <td align="center"> Original</td>
+         <td align="center"> <audio controls=""><source src="data//speech/si1048_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data//speech/si2329_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data//speech/sx152_original.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> GLA (α=0.0) [2]</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_gla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_gla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_gla.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> FGLA (α=0.9) [3]</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_fgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_fgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_fgla.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> ADMMGLA [4]</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_admmgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_admmgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_admmgla.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Gradient descent</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_gd.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_gd.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_gd.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Prop-mel (α=0.0)</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_prop_mel.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_prop_mel.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_prop_mel.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Prop-mel (α=0.9)</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_fprop_mel.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_fprop_mel.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_fprop_mel.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Prop-full (α=0.0)</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_prop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_prop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_prop_set.wav"></audio></td>
+      </tr>
+      <tr>
+         <td align="center"> Prop-full (α=0.9)</td>
+         <td align="center"> <audio controls=""><source src="data/speech/si1048_fprop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/si2329_fprop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/speech/sx152_fprop_set.wav"></audio></td>
+      </tr>
+</tbody>
+</table><br />
+
+</p>
+
+<hr>
+<h2 id="intermediate">Evaluation on Music and Environmental Signals :</h2>
+<p>
+This section shows examples of reconstructed music signals and foley sounds.
+Original music signals are from the MASS dataset [5] and sampled at 44100 Hz.
+Original foley sounds are from the development sets of DCASE2023 Task 7 [6] and sampled at 22050 Hz.
+For more details, please refer our paper.
+</p>
+
+<table>
+   <tbody>
+       <tr>
+           <td align="center"> </td>
+           <td align="center"> Music </td>
+           <td align="center"> DogBark </td>
+           <td align="center"> Footstep </td>
+       </tr>
+       <tr>
+         <td align="center"> Original</td>
+         <td align="center"> <audio controls=""><source src="data/music/fort_minor-remember_the_name_127-145_with_effects_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_original.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_original.wav"></audio></td>
+      </tr>
+       <tr>
+         <td align="center"> FGLA (α=0.9) [3]</td>
+         <td align="center"> <audio controls=""><source src="data/music/fort_minor-remember_the_name_127-145_with_effects_fgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_fgla.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_fgla.wav"></audio></td>
+      </tr>
+       <tr>
+         <td align="center"> Prop-full (α=0.9)</td>
+         <td align="center"> <audio controls=""><source src="data/music/fort_minor-remember_the_name_127-145_with_effects_fprop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/DogBark_fprop_set.wav"></audio></td>
+         <td align="center"> <audio controls=""><source src="data/foley_sounds/Footstep_fprop_set.wav"></audio></td>
+      </tr>
+   </tbody>
+   </table><br />
+
+</p>
+
+<hr>
+<h2 id="references">References:</h2>
+<p>
+[1] P. Mowlaee, J. Kulmer, J. Stahl, and F. Mayer, “Single Channel Phase-Aware Signal Processing in Speech Communication: Theory and Practice,” Wiley, 2016.
+[<a href="https://www2.spsc.tugraz.at/people/pmowlaee/PhaseLab.html">page</a>]<br/>
+[2] D. Griffin and J. Lim, “Signal estimation from modified short-time Fourier transform,” IEEE Trans. Acoust., Speech, Signal Process., vol. 32, no. 2, pp. 236-243, Apr. 1984.
+[<a href="https://doi.org/10.1109/TASSP.1984.1164317">paper</a>]<br/>
+[3] N. Perraudin, P. Balazs, and P. L. Søndergaard, “A fast Griffin-Lim algorithm,” in Proc. IEEE Workshop Appl. Signal Process. Audio Acoust. (WASPAA), Oct. 2013, pp. 1-4.
+[<a href="https://doi.org/10.1109/WASPAA.2013.6701851">paper</a>]<br/>
+[4] Y. Masuyama, K. Yatabe, and Y. Oikawa, “Griffin-Lim like phase recovery via alternating direction method of multipliers,” IEEE Signal Process. Lett., vol. 26, pp. 184-188, Jan. 2019.
+[<a href="https://doi.org/10.1109/LSP.2018.2884026">paper</a>]<br/>
+[5] M. Vinyes, “MTG MASS database,” 2008.
+[<a href="https://www.upf.edu/web/mtg/mass">page</a>]<br/>
+[6] K. Choi, J. Im, L. Heller, B. McFee, K. Imoto, Y. Okamoto, M. Lagrange, and S. Takamichi, “Foley sound synthesis at the dcase 2023 challenge,” 2023.
+[<a href="https://dcase.community/challenge2023/task-foley-sound-synthesis">page</a>]<br/>
+</p>
+
+      </div>
+   </body>
+</html>
